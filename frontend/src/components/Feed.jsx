@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import TreePlantingForm from "./TreePlantingForm";
-
 import logo from "../assets/logo.png";
 import OpinionDisplay from "./OpinionDisplay";
 

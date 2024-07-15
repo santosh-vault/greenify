@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Register = () => {
@@ -23,13 +22,13 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-b from-green-400 to-green-900">
-      <div className="bg-gray-100 p-6 rounded-lg shadow-md w-1/4 relative px-6">
+    <div className="flex justify-center items-center h-screen bg-green-100">
+      <div className="bg-white p-6 rounded-lg shadow-md w-96">
         <h2 className="text-2xl font-bold mb-4 text-green-700 text-center">
           Register
         </h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-2">
+          <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="username"
@@ -45,7 +44,7 @@ const Register = () => {
               required
             />
           </div>
-          <div className="mb-2">
+          <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="name"
@@ -61,7 +60,7 @@ const Register = () => {
               required
             />
           </div>
-          <div className="mb-2">
+          <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="email"
@@ -77,7 +76,7 @@ const Register = () => {
               required
             />
           </div>
-          <div className="mb-2">
+          <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="password"
@@ -93,7 +92,7 @@ const Register = () => {
               required
             />
           </div>
-          <div className="mb-2">
+          <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="confirmPassword"
@@ -109,7 +108,7 @@ const Register = () => {
               required
             />
           </div>
-          <div className="mb-2">
+          <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="paymentMethod"
@@ -131,15 +130,13 @@ const Register = () => {
           >
             Register
           </button>
-          <div className="text-center mt-2">
-            <p className="text-gray-700">
-              Already registered?{" "}
-              <Link to="/" className="text-green-700 font-bold">
-                Login here
-              </Link>
-            </p>
-          </div>
         </form>
+        <p className="text-center text-gray-600 text-sm mt-4">
+          Already have an account?{" "}
+          <Link to="/login" className="text-green-600 hover:underline">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );

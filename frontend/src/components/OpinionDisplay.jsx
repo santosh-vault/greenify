@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FaRegComment } from "react-icons/fa";
 
-// Component for displaying individual opinions
 const OpinionItem = ({ opinion }) => {
   return (
     <div className="bg-gray-100 p-4 rounded-lg shadow-md">
@@ -13,7 +12,6 @@ const OpinionItem = ({ opinion }) => {
   );
 };
 
-// Main OpinionSection component
 const OpinionSection = () => {
   const [opinions, setOpinions] = useState([]);
   const [newOpinion, setNewOpinion] = useState("");
@@ -47,7 +45,6 @@ const OpinionSection = () => {
         </button>
       </form>
       <div className="space-y-4">
-        {/* Displaying submitted opinions */}
         {opinions.length > 0 ? (
           opinions.map((opinion, index) => (
             <OpinionItem key={index} opinion={opinion} />
