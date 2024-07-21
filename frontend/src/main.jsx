@@ -7,6 +7,7 @@ import Register from "./Pages/Register.jsx";
 import Login from "./Pages/Login.jsx";
 import Dashboard from "./Admin/Dashboard.jsx";
 import Users from "./Admin/Users.jsx";
+import ManageOpinions from "./Admin/ManageOpinions.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/users",
     element: <Users />,
+  },
+  {
+    path: "/mo",
+    element: <ManageOpinions />,
   },
 ]);
 

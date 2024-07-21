@@ -3,46 +3,43 @@ import { FaTrash, FaEdit } from "react-icons/fa";
 import Side from "./Side";
 
 // Sample data for demonstration
-const initialUsers = [
+const initialOpinions = [
   {
     id: 1,
     username: "john_doe",
-    email: "john@example.com",
-    password: "password123",
-    paymentMethod: "Credit Card",
+    text: "This is my first opinion!",
+    date: new Date().toLocaleString(),
   },
   {
     id: 2,
     username: "jane_smith",
-    email: "jane@example.com",
-    password: "password456",
-    paymentMethod: "PayPal",
+    text: "I love this platform.",
+    date: new Date().toLocaleString(),
   },
   {
     id: 3,
     username: "alice_johnson",
-    email: "alice@example.com",
-    password: "password789",
-    paymentMethod: "Bank Transfer",
+    text: "Can’t wait to see more features.",
+    date: new Date().toLocaleString(),
   },
 ];
 
-const Users = () => {
-  const [users, setUsers] = useState([]);
+const ManageOpinions = () => {
+  const [opinions, setOpinions] = useState([]);
 
   useEffect(() => {
-    // Load initial user data (you can replace this with API call)
-    setUsers(initialUsers);
+    // Load initial opinion data (you can replace this with API call)
+    setOpinions(initialOpinions);
   }, []);
 
-  const handleDelete = (userId) => {
-    // Handle user deletion (e.g., API call to delete user)
-    setUsers(users.filter((user) => user.id !== userId));
+  const handleDelete = (opinionId) => {
+    // Handle opinion deletion (e.g., API call to delete opinion)
+    setOpinions(opinions.filter((opinion) => opinion.id !== opinionId));
   };
 
-  const handleEdit = (userId) => {
-    // Handle user editing (e.g., open a modal with user details)
-    console.log("Edit user:", userId);
+  const handleEdit = (opinionId) => {
+    // Handle opinion editing (e.g., open a modal with opinion details)
+    console.log("Edit opinion:", opinionId);
   };
 
   return (
@@ -51,7 +48,7 @@ const Users = () => {
       <div className="flex-1 p-6 bg-white">
         <div className="p-6 bg-white rounded-lg shadow-md">
           <h1 className="text-3xl font-bold text-green-700 mb-6">
-            Manage Users
+            Manage Opinions
           </h1>
           <table className="min-w-full bg-white">
             <thead>
@@ -60,13 +57,10 @@ const Users = () => {
                   Username
                 </th>
                 <th className="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
-                  Email
+                  Opinion
                 </th>
                 <th className="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
-                  Password
-                </th>
-                <th className="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
-                  Payment Method
+                  Date
                 </th>
                 <th className="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
                   Actions
@@ -74,29 +68,26 @@ const Users = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => (
-                <tr key={user.id}>
+              {opinions.map((opinion) => (
+                <tr key={opinion.id}>
                   <td className="py-2 px-4 border-b border-gray-200 text-sm">
-                    {user.username}
+                    {opinion.username}
                   </td>
                   <td className="py-2 px-4 border-b border-gray-200 text-sm">
-                    {user.email}
+                    {opinion.text}
                   </td>
                   <td className="py-2 px-4 border-b border-gray-200 text-sm">
-                    {user.password}
-                  </td>
-                  <td className="py-2 px-4 border-b border-gray-200 text-sm">
-                    {user.paymentMethod}
+                    {opinion.date}
                   </td>
                   <td className="py-2 px-4 border-b border-gray-200 text-sm">
                     <button
-                      onClick={() => handleEdit(user.id)}
+                      onClick={() => handleEdit(opinion.id)}
                       className="text-blue-500 hover:text-blue-700 mr-2"
                     >
                       <FaEdit />
                     </button>
                     <button
-                      onClick={() => handleDelete(user.id)}
+                      onClick={() => handleDelete(opinion.id)}
                       className="text-red-500 hover:text-red-700"
                     >
                       <FaTrash />
@@ -112,4 +103,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default ManageOpinions;

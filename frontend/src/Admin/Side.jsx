@@ -37,7 +37,7 @@ const Side = () => {
           </li>
           <li>
             <Link
-              to="/opinions"
+              to="/mo"
               className="flex items-center space-x-3 hover:bg-green-600 p-2 rounded"
             >
               <FaTree />
