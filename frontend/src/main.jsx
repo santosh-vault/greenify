@@ -8,6 +8,7 @@ import Login from "./Pages/Login.jsx";
 import Dashboard from "./Admin/Dashboard.jsx";
 import Users from "./Admin/Users.jsx";
 import ManageOpinions from "./Admin/ManageOpinions.jsx";
+import UserDash from "./Pages/UserDash.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,11 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/dashboard",
+    path: "/userdash",
+    element: <UserDash />,
+  },
+  {
+    path: "/admin-dashboard",
     element: <Dashboard />,
   },
   {

@@ -1,68 +1,63 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log({ username, password });
+    try {
+      const response = await axios.post(
+        "http://localhost:5001/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
+      localStorage.setItem("token", response.data.token);
+      navigate("/userdash");
+    } catch (err) {
+      setError(err.response?.data?.error || "Login failed");
+    }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-green-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold mb-4 text-green-700 text-center">
-          Login
-        </h2>
+    <div className="flex justify-center items-center h-screen bg-gray-200">
+      <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="username"
-            >
-              Username
-            </label>
+            <label className="block mb-2 font-bold">Email:</label>
             <input
-              id="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded"
               required
             />
           </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Password
-            </label>
+          <div className="mb-6">
+            <label className="block mb-2 font-bold">Password:</label>
             <input
-              id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="w-full p-2 border border-gray-300 rounded"
               required
             />
           </div>
           <button
             type="submit"
-            className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-700 transition duration-300"
           >
             Login
           </button>
         </form>
-        <p className="text-center text-gray-600 text-sm mt-4">
-          Don't have an account?{" "}
-          <Link to="/register" className="text-green-600 hover:underline">
-            Register
-          </Link>
-        </p>
       </div>
     </div>
   );

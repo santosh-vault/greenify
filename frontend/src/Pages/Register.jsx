@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -8,17 +9,35 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
-    // Handle form submission
-    console.log({ username, name, email, password, paymentMethod });
-    setIsRegistered(true); // Set as registered after successful submission
+    try {
+      const response = await axios.post(
+        "http://localhost:5001/api/auth/register",
+        {
+          username,
+          name,
+          email,
+          password,
+          paymentMethod,
+        }
+      );
+
+      if (response.status === 201) {
+        alert("Registration successful");
+        // Redirect to the login page after successful registration
+        navigate("/login");
+      }
+    } catch (err) {
+      setError(err.response ? err.response.data.error : "Something went wrong");
+    }
   };
 
   return (
@@ -27,6 +46,7 @@ const Register = () => {
         <h2 className="text-2xl font-bold mb-4 text-green-700 text-center">
           Register
         </h2>
+        {error && <p className="text-red-500 text-center">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
